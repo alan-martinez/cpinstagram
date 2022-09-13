@@ -30,4 +30,4 @@ Route::post('logout', [LogoutController::class, 'store'])->name('logout');
 
 //toma modelo de user:variable que queremos tomar de la BD
 Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index');
-
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
