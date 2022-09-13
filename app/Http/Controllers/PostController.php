@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    //
+    public function __construct()
+    {
+        //Antes de mostrar index, verifica que el usuario este autenticado
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        dd(auth()->user());
+        return view('dashboard');
     }
 }
