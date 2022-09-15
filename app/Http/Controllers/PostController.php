@@ -20,8 +20,18 @@ class PostController extends Controller
         ]);
     }
 
+    //Permite tener el formulario get para visualizar (create)
     public function create()
     {
         return view('posts.create');
+    }
+
+    //Permite almacenar en la BD (store)
+    public function store(Request $request){
+        $this->validate($request, [
+            'titulo' => 'required|max:255',
+            'descripcion' => 'required',
+            'imagen' => 'required'  
+        ]);
     }
 }
