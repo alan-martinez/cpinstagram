@@ -34,7 +34,7 @@
 
                 @guest
                     <nav class="flex gap-2 items-center">
-                        <a class="font-bold uppercase text-gray-600 text-sm" href="#">Login</a>
+                        <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}" class="font-bold uppercase text-gray-600 text-sm">Crear cuenta</a>
                     </nav>
                 @endguest
