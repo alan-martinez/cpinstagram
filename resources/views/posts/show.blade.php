@@ -23,6 +23,20 @@
                     {{ $post->descripcion }}
                 </p>
             </div>
+
+            @auth {{-- Usuario esta autenticado --}}
+                @if ($post->user_id == auth()->user()->id) {{-- Usuario que autenticado, es la misma del dueño del post--}}
+                    <form method="POST" action="{{ route('posts.destroy', $post) }}">
+                        @method('DELETE') {{-- Metodo spoofing --}}
+                        @csrf
+                            <input type="submit"
+                            value="Eliminar publicación"
+                            class="bg-red-500 hover:bg-red-600 p-2 rounded text-white font-bold mt-4 cursor-pointer"
+                            />
+                    </form>
+                @endif
+            @endauth
+
         </div>
         <div class="md:w-1/2 p-5">
             <div class="shadow bg-white p-5 mb-5">
@@ -66,7 +80,7 @@
                     @if ($post->comentarios->count())
                         @foreach ($post->comentarios as $comentario)
                             <div class="p-5 border-gray-300 border-b">
-                                <a href="{{ route('post.index', $comentario->user) }}" class="font-bold">
+                                <a href="{{ route('posts.index', $comentario->user) }}" class="font-bold">
                                     {{ $comentario->user->username }}
                                 </a>
                                 <p> {{ $comentario->comentario }}
